@@ -114,7 +114,7 @@ prevPreview.addEventListener("click", () => {
 
 /* ================= CONTACT ================= */
 function wa(){
-  window.open("https://wa.me/627724026611");
+  window.open("https://wa.me/6287724026611");
 }
 
 function email(){
