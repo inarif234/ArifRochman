@@ -23,6 +23,7 @@ nav a { font-size: var(--nav-size); }
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
   scroll-behavior: smooth;
+  scroll-margin-top: 80px;
 }
 
 body {
@@ -284,7 +285,7 @@ nav .btn:hover {
 /* FOOTER */
 .footer {
   padding: 15px;
-  font-size: 14px;
+  font-size: 12px;
   text-align: center;
   background: #f5a623;
   color: #0c2a2f;
@@ -461,9 +462,19 @@ nav .btn:hover {
     text-align: center;
   }
 
+  .about p {
+    font-size: 13px; /* sesuaikan, bisa 13px / 12px kalau mau lebih kecil */
+   line-height: 1.6; /* opsional biar tetap nyaman dibaca */
+  }
+
   /* PROJECT MOBILE */
   .projects {
     padding: var(--section-padding);
+  }
+
+  .projects p {
+    font-size: 13px; /* bisa 13px kalau mau lebih kecil */
+   line-height: 1.6;
   }
 
   .cards {
@@ -482,19 +493,29 @@ nav .btn:hover {
   }
   
   .preview-wrapper {
-    width: 100%;
-    overflow-x: auto; /* ✅ bisa geser */
-    scroll-snap-type: x mandatory; /* smooth snap */
+   width: 100%;
+   overflow: hidden; /* ✅ kunci biar gak bisa scroll */
   }
 
   .preview-slider {
-    display: flex;
-    gap: 15px;
+   display: flex;
+   transition: transform 0.4s ease;
   }
+
+.preview-slider img {
+  width: 100%;
+  min-width: 100%;
+  flex-shrink: 0;
+}
 
   /* CONTACT MOBILE */
   .contact {
     padding: var(--section-padding);
+  }
+
+  .contact p {
+   font-size: 13px; /* bisa 13px kalau mau lebih kecil */
+   line-height: 1.6;
   }
 
   .contact-btns {
@@ -505,5 +526,13 @@ nav .btn:hover {
   .contact-btns button {
     width: 100%;
     max-width: 300px;
+  }
+
+  .footer {
+   padding: 15px;
+   font-size: 10px;
+   text-align: center;
+   background: #f5a623;
+   color: #0c2a2f;
   }
 }
