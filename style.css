@@ -464,7 +464,7 @@ nav .btn:hover {
 
   .about p {
     font-size: 13px; /* sesuaikan, bisa 13px / 12px kalau mau lebih kecil */
-   line-height: 1.6; /* opsional biar tetap nyaman dibaca */
+    line-height: 1.6; /* opsional biar tetap nyaman dibaca */
   }
 
   /* PROJECT MOBILE */
@@ -474,17 +474,30 @@ nav .btn:hover {
 
   .projects p {
     font-size: 13px; /* bisa 13px kalau mau lebih kecil */
-   line-height: 1.6;
+    line-height: 1.6;
   }
 
   .cards {
-    grid-template-columns: 1fr; /* Satu kolom saja */
+    display: flex;              /* 🔥 ubah dari grid ke flex */
     gap: 15px;
+    overflow-x: auto;           /* 🔥 aktifkan scroll horizontal */
+    scroll-snap-type: x mandatory; /* 🔥 ini kunci */
+    scroll-behavior: smooth;
+    padding-bottom: 10px;
   }
 
   .card {
-    font-size: var(--card-size);
+    min-width: 80%;             /* 🔥 biar 1 card dominan di layar */
+    flex-shrink: 0;
+    scroll-snap-align: center;
+    font-size: 50(--card-size);
     padding: 40px 15px;
+  }
+
+  .card span {
+    font-size: 13px;
+    line-height: 1.4;
+    display: block;
   }
 
   /* PREVIEW MOBILE */
@@ -493,20 +506,21 @@ nav .btn:hover {
   }
   
   .preview-wrapper {
-   width: 100%;
-   overflow: hidden; /* ✅ kunci biar gak bisa scroll */
+    width: 100%;
+    aspect-ratio: 9 / 16; /* 🔥 portrait untuk mobile */
+    overflow: hidden; /* ✅ kunci biar gak bisa scroll */
   }
 
   .preview-slider {
-   display: flex;
-   transition: transform 0.4s ease;
+    display: flex;
+    transition: transform 0.4s ease;
   }
 
-.preview-slider img {
-  width: 100%;
-  min-width: 100%;
-  flex-shrink: 0;
-}
+ .preview-slider img {
+   width: 100%;
+   min-width: 100%;
+    flex-shrink: 0;
+  }
 
   /* CONTACT MOBILE */
   .contact {
