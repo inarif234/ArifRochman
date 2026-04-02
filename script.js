@@ -114,9 +114,42 @@ prevPreview.addEventListener("click", () => {
 
 /* ================= CONTACT ================= */
 function wa(){
-  window.open("https://wa.me/6287724026611");
+  window.open("https://wa.me/627724026611");
 }
 
 function email(){
   window.location.href = "mailto:in.arifrochman@gmail.com";
+}
+
+/* ================= SWIPE MOBILE ================= */
+let startX = 0;
+let endX = 0;
+
+previewSlider.addEventListener("touchstart", (e) => {
+  startX = e.touches[0].clientX;
+});
+
+previewSlider.addEventListener("touchend", (e) => {
+  endX = e.changedTouches[0].clientX;
+  handleSwipe();
+});
+
+function handleSwipe() {
+  const diff = startX - endX;
+
+  // swipe kiri (next)
+  if (diff > 50) {
+    if (currentIndex < images.length - 1) {
+      currentIndex++;
+      updatePreview();
+    }
+  }
+
+  // swipe kanan (prev)
+  if (diff < -50) {
+    if (currentIndex > 0) {
+      currentIndex--;
+      updatePreview();
+    }
+  }
 }
