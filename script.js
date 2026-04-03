@@ -1,4 +1,4 @@
-/* ================= PREVIEW ================= */
+/* INITIAL SETUP */
 const cards = document.querySelectorAll(".card");
 const previewSection = document.getElementById("previewSection");
 const previewSlider = document.getElementById("previewSlider");
@@ -10,10 +10,9 @@ const prevPreview = document.querySelector(".preview-btn.prev");
 let currentIndex = 0;
 let images = [];
 
-/* ================= DATA GAMBAR ================= */
 const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
-/* ================= DATA DESKTOP ================= */
+/* DATA IMG DESKTOP */
 const dataDesktop = {
   0: [
     "img/web/web1.jpg",
@@ -21,7 +20,6 @@ const dataDesktop = {
     "img/web/web3.jpg",
     "img/web/web4.jpg"
   ],
-
   1: [
     "img/sosmed/sosmed1.jpg",
     "img/sosmed/sosmed2.jpg",
@@ -33,14 +31,12 @@ const dataDesktop = {
     "img/sosmed/sosmed8.jpg",
     "img/sosmed/sosmed9.jpg",
   ],
-
   2: [
     "img/logo/logo1.jpg",
     "img/logo/logo2.jpg",
     "img/logo/logo3.jpg",
     "img/logo/logo4.jpg",
   ],
-
   3: [
     "img/print/print1.jpg",
     "img/print/print2.jpg",
@@ -48,7 +44,7 @@ const dataDesktop = {
   ]
 };
 
-/* ================= DATA MOBILE ================= */
+/* DATA IMG MOBILE */
 const dataMobile = {
   0: [
     "img/web-mobile/web1.jpg",
@@ -56,7 +52,6 @@ const dataMobile = {
     "img/web-mobile/web3.jpg",
     "img/web-mobile/web4.jpg",
   ],
-
   1: [
     "img/sosmed-mobile/sosmed1.jpg",
     "img/sosmed-mobile/sosmed2.jpg",
@@ -68,14 +63,12 @@ const dataMobile = {
     "img/sosmed-mobile/sosmed8.jpg",
     "img/sosmed-mobile/sosmed9.jpg",
   ],
-
   2: [
     "img/logo-mobile/logo1.jpg",
     "img/logo-mobile/logo2.jpg",
     "img/logo-mobile/logo3.jpg",
     "img/logo-mobile/logo4.jpg",
   ],
-
   3: [
     "img/print-mobile/print1.jpg",
     "img/print-mobile/print2.jpg",
@@ -83,17 +76,27 @@ const dataMobile = {
   ]
 };
 
-/* ================= FINAL DATA ================= */
+
+/* FINAL DATA */
 const data = isMobile ? dataMobile : dataDesktop;
-/* ================= CLICK CARD ================= */
+
+
+/* CLICK CARD (ACTIVE + CENTER + LOAD PREVIEW) */
 cards.forEach((card, i) => {
   card.addEventListener("click", () => {
 
-    // aktifkan warna kuning
+    /* ACTIVE STATE */
     cards.forEach(c => c.classList.remove("active"));
     card.classList.add("active");
 
-    // ambil data gambar
+    /* AUTO CENTER CARD */
+    card.scrollIntoView({
+      behavior: "smooth",
+      inline: "center",
+      block: "nearest"
+    });
+
+    /* LOAD IMAGE */
     images = data[i];
     currentIndex = 0;
 
@@ -102,16 +105,19 @@ cards.forEach((card, i) => {
   });
 });
 
-/* ================= RENDER PREVIEW ================= */
+
+/* RENDER PREVIEW */
 function renderPreview() {
   previewSlider.innerHTML = "";
   dotsContainer.innerHTML = "";
 
   images.forEach((src, i) => {
+    /* IMAGE */
     const img = document.createElement("img");
     img.src = src;
     previewSlider.appendChild(img);
 
+    /* DOT */
     const dot = document.createElement("span");
     if (i === 0) dot.classList.add("active");
 
@@ -126,7 +132,8 @@ function renderPreview() {
   updatePreview();
 }
 
-/* ================= UPDATE ================= */
+
+/* UPDATE PREVIEW */
 function updatePreview() {
   previewSlider.style.transform = `translateX(-${currentIndex * 100}%)`;
 
@@ -135,7 +142,8 @@ function updatePreview() {
   });
 }
 
-/* ================= NAV PREVIEW ================= */
+
+/* NAVIGATION PREVIEW */
 nextPreview.addEventListener("click", () => {
   if (currentIndex < images.length - 1) {
     currentIndex++;
@@ -150,16 +158,18 @@ prevPreview.addEventListener("click", () => {
   }
 });
 
-/* ================= CONTACT ================= */
-function wa(){
-  window.open("https://wa.me/627724026611");
+
+/* CONTACT */
+function wa() {
+  window.open("https://wa.me/6287724026611");
 }
 
-function email(){
+function email() {
   window.location.href = "mailto:in.arifrochman@gmail.com";
 }
 
-/* ================= SWIPE MOBILE ================= */
+
+/* SWIPE MOBILE */
 let startX = 0;
 let endX = 0;
 
@@ -175,19 +185,15 @@ previewSlider.addEventListener("touchend", (e) => {
 function handleSwipe() {
   const diff = startX - endX;
 
-  // swipe kiri (next)
-  if (diff > 50) {
-    if (currentIndex < images.length - 1) {
-      currentIndex++;
-      updatePreview();
-    }
+  /* SWIPE LEFT (NEXT) */
+  if (diff > 50 && currentIndex < images.length - 1) {
+    currentIndex++;
+    updatePreview();
   }
 
-  // swipe kanan (prev)
-  if (diff < -50) {
-    if (currentIndex > 0) {
-      currentIndex--;
-      updatePreview();
-    }
+  /* SWIPE RIGHT (PREV) */
+  if (diff < -50 && currentIndex > 0) {
+    currentIndex--;
+    updatePreview();
   }
 }

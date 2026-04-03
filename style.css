@@ -1,3 +1,4 @@
+/* ROOT VARIABLES */
 :root {
   /* Ukuran Desktop (Default) */
   --h2-size: 100px;
@@ -8,11 +9,12 @@
   --section-padding: 100px;
 }
 
-/* Gunakan variabel ini di selector yang relevan, contoh: */
+/* Contoh penggunaan variabel */
 .hero h2 {
   font-size: var(--h2-size);
   line-height: var(--h2-line-height);
 }
+
 .hero p { font-size: var(--p-size); }
 nav a { font-size: var(--nav-size); }
 
@@ -45,7 +47,13 @@ header {
   width: 100%;
   z-index: 1000;
   padding: 20px 0;
-  background: #081C23;
+
+  /* Glass Effect */
+  background: rgba(8, 28, 35, 0.70);
+  backdrop-filter: blur(50px);
+  -webkit-backdrop-filter: blur(10px);
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .nav {
@@ -63,7 +71,7 @@ header {
   color: #f5a623;
 }
 
-/* NAV LINK */
+/* NAVLINK */
 nav a {
   margin-left: 25px;
   font-size: 20px;
@@ -72,13 +80,12 @@ nav a {
   transition: 0.3s ease;
 }
 
-/* Hover About & Projects */
 nav a:hover {
   color: #f5a623;
   transform: translateY(-2px);
 }
 
-/* Contact Button */
+/* CONTACT BUTTON */
 nav .btn {
   padding: 8px 16px;
   border: 1px solid #fff;
@@ -86,14 +93,13 @@ nav .btn {
   transition: 0.3s ease;
 }
 
-/* Hover Contact (background kuning) */
 nav .btn:hover {
   background: #f5a623;
   color: #0c2a2f;
   border-color: #f5a623;
 }
 
-/* HERO */
+/* HERO SECTION */
 .hero {
   display: flex;
   align-items: center;
@@ -124,13 +130,13 @@ nav .btn:hover {
 }
 
 .hero-img img {
-  width: 500x;
+  width: 500px; /* FIX typo */
   height: 500px;
   object-fit: cover;
   border-radius: 0%;
 }
 
-/* ABOUT */
+/* ABOUT SECTION */
 .about {
   padding: 100px 0;
   text-align: center;
@@ -168,14 +174,20 @@ nav .btn:hover {
   margin-top: 20px;
   padding: 10px 16px;
   border-radius: 5px;
-  background: #f5a623;
+  background: #295a57;
   color: #fff;
   text-decoration: none;
   transition: 0.3s ease;
 }
 
+.cv-btn:hover {
+  background: #0c2a2f;
+  color: #fff;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2); /* depth */
+}
 
-/* PROJECT */
+/* PROJECT SECTION */
 .projects {
   padding: 100px;
   text-align: center;
@@ -185,6 +197,10 @@ nav .btn:hover {
 
 .my-text {
   color: #f5a623;
+}
+
+h2 {
+  margin-bottom: 10px;
 }
 
 .slider-container {
@@ -198,16 +214,21 @@ nav .btn:hover {
 .cards-wrapper {
   width: 100%;
   overflow: hidden;
+  padding: 10px;
 }
 
 .cards {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  cursor: pointer;
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+  overflow-y: visible;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
-/* CARD (4 total, tapi terlihat 3) */
+/* CARD */
 .card {
   min-width: calc(100% / 3 - 13px);
   padding: 60px;
@@ -224,23 +245,113 @@ nav .btn:hover {
   font-size: 18px;
 }
 
+/* CARD HOVER */
+.card:hover {
+  transform: translateY(-5px);
+  overflow: visible;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.10);
+  background: #0c2a2f;
+  cursor: pointer;
+}
+
+/* ACTIVE CARD */
+.card.active {
+  background: #0c2a2f;
+  color: #fff;
+}
+
 /* BUTTON NAV */
 .nav-btn {
   width: 50px;
   height: 50px;
   border: none;
   border-radius: 50%;
-  background: #214e4e; /* sama seperti card */
+  background: #214e4e;
   color: #fff;
   font-size: 24px;
   cursor: pointer;
   transition: 0.3s;
 }
 
-/* Hover button */
 .nav-btn:hover {
   background: #f5a623;
   color: #0c2a2f;
+}
+
+/* PREVIEW IMAGE */
+.preview-section {
+  margin-top: 60px;
+  display: none;
+  text-align: center;
+}
+
+.preview-section.active {
+  display: block;
+}
+
+.preview-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.preview-wrapper {
+  width: 100%;
+  max-width: 1000px;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 15px;
+  margin: 0 auto;
+}
+
+.preview-slider {
+  display: flex;
+  transition: 0.4s ease;
+}
+
+.preview-slider img {
+  width: 100%;
+  min-width: 100%;
+  flex-shrink: 0;
+  scroll-snap-align: center;
+  border-radius: 10px;
+}
+
+/* BUTTON PREVIEW */
+.preview-btn {
+  width: 45px;
+  height: 45px;
+  border: none;
+  border-radius: 50%;
+  background: #214e4e;
+  color: #fff;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.preview-btn:hover {
+  background: #f5a623;
+  color: #0c2a2f;
+}
+
+/* DOT */
+.dots {
+  margin-top: 20px;
+}
+
+.dots span {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin: 5px;
+  background: #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.dots span.active {
+  background: #214e4e;
 }
 
 /* CONTACT */
@@ -280,6 +391,34 @@ nav .btn:hover {
   background: #cfe0e0;
   color: #0c2a2f;
   cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.contact-btns button:hover {
+  background: #f5a623;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.contact {
+  position: relative;
+  padding: 100px 0;
+  text-align: center;
+}
+
+.social-links {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 25px; 
+}
+
+.social-links a {
+  text-decoration: none;
+  font-size: 12;
+  color: #fff;
 }
 
 /* FOOTER */
@@ -291,94 +430,13 @@ nav .btn:hover {
   color: #0c2a2f;
 }
 
-/* ACTIVE CARD */
-.card.active {
-  background: #f5a623;
-  color: #0c2a2f;
-}
-
-/* PREVIEW */
-.preview-section {
-  margin-top: 60px;
-  display: none;
-  text-align: center;
-}
-
-.preview-section.active {
-  display: block;
-}
-
-.preview-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
-}
-
-/* PREVIEW IMAGE SIZE FIX */
-.preview-wrapper {
-  width: 100%;
-  max-width: 1000px;
-  aspect-ratio: 16 / 9; /* biar proporsi sama */
-  overflow: hidden;
-  border-radius: 15px;
-  margin: 0 auto;
-}
-
-.preview-slider {
-  display: flex;
-  transition: 0.4s ease;
-}
-
-.preview-slider img {
-  width: 100%;
-  min-width: 100%;
-  flex-shrink: 0;
-   scroll-snap-align: center;
-  border-radius: 30px; /* ✅ pakai satu saja */
-}
-
-/* BUTTON PREVIEW */
-.preview-btn {
-  width: 45px;
-  height: 45px;
-  border: none;
-  border-radius: 50%;
-  background: #214e4e;
-  color: #fff;
-  cursor: pointer;
-  font-size: 20px;
-}
-
-.preview-btn:hover {
-  background: #f5a623;
-  color: #0c2a2f;
-}
-
-/* DOT */
-.dots {
-  margin-top: 20px;
-}
-
-.dots span {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  margin: 5px;
-  background: #ccc;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.dots span.active {
-  background: #214e4e;
-}
-
-/* ================= MOBILE VERSION ================= */
+/*---------- MOBILE VERSION ----------*/
 @media (max-width: 768px) {
+
+  /* ROOT VARIABLES */
   :root {
-    /* Atur semua ukuran teks mobile di sini */
-    --h2-size: 50px;           /* Lebih kecil agar tidak overflow */
+    /* Pengaturan ukuran text mobile */
+    --h2-size: 50px;
     --h2-line-height: 55px;
     --p-size: 15px;
     --nav-size: 14px;
@@ -386,9 +444,11 @@ nav .btn:hover {
     --section-padding: 60px 20px;
   }
 
+  /* GLOBAL MOBILE */
   .container {
     padding: 0 20px;
   }
+
 
   /* NAVBAR MOBILE */
   header {
@@ -396,8 +456,9 @@ nav .btn:hover {
   }
 
   .nav {
+    display: flex;
     flex-direction: column;
-    align-items: center; /* ✅ ini yang bikin center */
+    align-items: center; /* center */
     gap: 10px;
   }
 
@@ -408,10 +469,10 @@ nav .btn:hover {
   nav {
     display: flex;
     justify-content: center;
-    align-items: center; /* ✅ biar sejajar tengah */
+    align-items: center;
     gap: 15px;
     flex-wrap: wrap;
-    width: 100%; /* ✅ biar full dan bisa center */
+    width: 100%;
   }
 
   nav a {
@@ -422,12 +483,13 @@ nav .btn:hover {
   /* HERO MOBILE */
   .hero {
     height: auto;
-    padding: 150px 0 50px; /* Padding top lebih besar karena navbar fixed */
+    padding: 150px 0 50px;
     background-position: center;
   }
 
   .hero-content {
-    flex-direction: column-reverse; /* Gambar di atas, teks di bawah */
+    display: flex;
+    flex-direction: column-reverse;
     text-align: center;
     gap: 40px;
   }
@@ -439,9 +501,10 @@ nav .btn:hover {
 
   .hero-img img {
     width: 100%;
-    max-width: 280px; /* Ukuran foto profil di mobile */
+    max-width: 280px;
     height: auto;
   }
+
 
   /* ABOUT MOBILE */
   .about {
@@ -449,6 +512,7 @@ nav .btn:hover {
   }
 
   .about-content {
+    display: flex;
     flex-direction: column;
     gap: 20px;
   }
@@ -463,9 +527,10 @@ nav .btn:hover {
   }
 
   .about p {
-    font-size: 13px; /* sesuaikan, bisa 13px / 12px kalau mau lebih kecil */
-    line-height: 1.6; /* opsional biar tetap nyaman dibaca */
+    font-size: 13px;
+    line-height: 1.6;
   }
+
 
   /* PROJECT MOBILE */
   .projects {
@@ -473,21 +538,21 @@ nav .btn:hover {
   }
 
   .projects p {
-    font-size: 13px; /* bisa 13px kalau mau lebih kecil */
+    font-size: 13px;
     line-height: 1.6;
   }
 
   .cards {
-    display: flex;              /* 🔥 ubah dari grid ke flex */
+    display: flex;
     gap: 15px;
-    overflow-x: auto;           /* 🔥 aktifkan scroll horizontal */
-    scroll-snap-type: x mandatory; /* 🔥 ini kunci */
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     padding-bottom: 10px;
   }
 
   .card {
-    min-width: 80%;             /* 🔥 biar 1 card dominan di layar */
+    min-width: 80%;
     flex-shrink: 0;
     scroll-snap-align: center;
     font-size: 50(--card-size);
@@ -495,20 +560,21 @@ nav .btn:hover {
   }
 
   .card span {
+    display: block;
     font-size: 13px;
     line-height: 1.4;
-    display: block;
   }
 
-  /* PREVIEW MOBILE */
+
+  /* PREVIEW IMAGE MOBILE */
   .preview-btn {
-    display: none; /* ❌ sembunyikan tombol */
+    display: none;
   }
-  
+
   .preview-wrapper {
     width: 100%;
-    aspect-ratio: 9 / 16; /* 🔥 portrait untuk mobile */
-    overflow: hidden; /* ✅ kunci biar gak bisa scroll */
+    aspect-ratio: 9 / 16;
+    overflow: hidden;
   }
 
   .preview-slider {
@@ -516,11 +582,13 @@ nav .btn:hover {
     transition: transform 0.4s ease;
   }
 
- .preview-slider img {
-   width: 100%;
-   min-width: 100%;
+  .preview-slider img {
+    width: 100%;
+    min-width: 100%;
     flex-shrink: 0;
+    border-radius: 10px;
   }
+
 
   /* CONTACT MOBILE */
   .contact {
@@ -528,11 +596,12 @@ nav .btn:hover {
   }
 
   .contact p {
-   font-size: 13px; /* bisa 13px kalau mau lebih kecil */
-   line-height: 1.6;
+    font-size: 13px;
+    line-height: 1.6;
   }
 
   .contact-btns {
+    display: flex;
     flex-direction: column;
     align-items: center;
   }
@@ -542,11 +611,18 @@ nav .btn:hover {
     max-width: 300px;
   }
 
+  .contact {
+    position: relative;
+    padding: 100px 0;
+    text-align: center;
+  }
+
+  /* FOOTER MOBILE */
   .footer {
-   padding: 15px;
-   font-size: 10px;
-   text-align: center;
-   background: #f5a623;
-   color: #0c2a2f;
+    padding: 15px;
+    font-size: 10px;
+    text-align: center;
+    background: #f5a623;
+    color: #0c2a2f;
   }
 }
