@@ -20,6 +20,7 @@ const dataDesktop = {
     "img/web/web3.jpg",
     "img/web/web4.jpg",
     "img/web/web5.jpg",
+    "img/web/web6.jpg",
   ],
   1: [
     "img/sosmed/sosmed1.jpg",
@@ -53,6 +54,7 @@ const dataMobile = {
     "img/web-mobile/web3.jpg",
     "img/web-mobile/web4.jpg",
     "img/web-mobile/web5.jpg",
+    "img/web-mobile/web6.jpg",
   ],
   1: [
     "img/sosmed-mobile/sosmed1.jpg",
