@@ -1,24 +1,470 @@
 <!DOCTYPE html>
-  <html lang="en">
-  <head>
+<html lang="en">
+<head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
   <title>Portfolio by Arif Rochman</title>
+  <style>
+    /* ROOT VARIABLES */
+    :root {
+      --primary-white: #ffffff;
+      --secondary-tosca: #20b2aa;
+      --tosca-dark: #1a8f89;
+      --tosca-light: #e0f2f1;
+      --text-main: #2c3e50;
+      --text-muted: #5d6d7e;
+      --bg-light: #f8fbfa;
+      --transition: all 0.3s ease;
+      --container-width: 1100px;
+    }
+
+    /* RESET & GLOBAL */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--primary-white);
+      color: var(--text-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .container {
+      width: 90%;
+      max-width: var(--container-width);
+      margin: 0 auto;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: var(--transition);
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+
+    section {
+      padding: 100px 0;
+    }
+
+    span.accent {
+      color: var(--secondary-tosca);
+    }
+
+    /* NAVBAR */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #eee;
+    }
+
+    .nav {
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a:hover {
+      color: var(--secondary-tosca);
+    }
+
+    .nav-links .btn-contact {
+      background: var(--secondary-tosca);
+      color: white;
+      padding: 10px 25px;
+      border-radius: 50px;
+    }
+
+    .nav-links .btn-contact:hover {
+      background: var(--tosca-dark);
+      box-shadow: 0 4px 15px rgba(32, 178, 170, 0.3);
+    }
+
+    /* HERO SECTION */
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      background: var(--bg-light);
+      padding-top: 80px;
+    }
+
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 50px;
+    }
+
+    .hero .text h2 {
+      font-size: 4.5rem;
+      color: var(--text-main);
+      margin-bottom: 10px;
+    }
+
+    .hero .text p {
+      font-size: 1.2rem;
+      color: var(--secondary-tosca);
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .hero-img {
+      text-align: right;
+    }
+
+    .hero-img img {
+      width: 100%;
+      max-width: 450px;
+      border-radius: 30px;
+      box-shadow: 20px 20px 0px var(--secondary-tosca);
+    }
+
+    /* ABOUT SECTION */
+    .about {
+      background: white;
+    }
+
+    .about-content {
+      display: flex;
+      align-items: center;
+      gap: 60px;
+      margin-top: 50px;
+    }
+
+    .about img {
+      width: 350px;
+      border-radius: 20px;
+      filter: grayscale(0.2);
+    }
+
+    .about .desc {
+      flex: 1;
+    }
+
+    .about .desc p {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 30px;
+    }
+
+    .cv-btn {
+      display: inline-block;
+      padding: 15px 35px;
+      background: var(--text-main);
+      color: white;
+      border-radius: 8px;
+      font-weight: 600;
+    }
+
+    .cv-btn:hover {
+      background: var(--secondary-tosca);
+      transform: translateY(-3px);
+    }
+
+    /* PROJECTS SECTION */
+    .projects {
+      background: var(--bg-light);
+    }
+
+    .projects-header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 60px;
+    }
+
+    .slider-container {
+      margin-top: 40px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-bottom: 50px;
+    }
+
+    .card {
+      background: white;
+      padding: 40px 20px;
+      border-radius: 20px;
+      text-align: center;
+      cursor: pointer;
+      border: 1px solid #eee;
+      transition: var(--transition);
+    }
+
+    .card .num {
+      display: block;
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: #eee;
+      margin-bottom: 10px;
+      transition: var(--transition);
+    }
+
+    .card span {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text-main);
+    }
+
+    .card:hover, .card.active {
+      border-color: var(--secondary-tosca);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      transform: translateY(-5px);
+    }
+
+    .card.active .num, .card:hover .num {
+      color: var(--secondary-tosca);
+    }
+
+    /* PREVIEW SECTION */
+    .preview-section {
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .preview-section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .preview-container {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      background: transparent;
+      padding: 0px;
+      border-radius: 0px;
+      box-shadow: none;
+    }
+
+    .preview-wrapper {
+      flex: 1;
+      overflow: hidden;
+      border-radius: 15px;
+    }
+
+    .preview-slider {
+      display: flex;
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .preview-slider img {
+      width: 100%;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .preview-btn {
+      width: 50px;
+      height: 50px;
+      border: none;
+      background: var(--secondary-tosca);
+      color: white;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+
+    .dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 30px;
+    }
+
+    .dots span {
+      width: 12px;
+      height: 12px;
+      background: #ddd;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .dots span.active {
+      background: var(--secondary-tosca);
+      width: 30px;
+      border-radius: 10px;
+    }
+
+    /* CONTACT SECTION */
+    .contact {
+      text-align: center;
+      background: var(--secondary-tosca);
+      color: white;
+      padding: 120px 0;
+    }
+
+    .contact h2 { color: white; margin-bottom: 20px; }
+    .contact p { opacity: 0.9; margin-bottom: 40px; font-size: 1.1rem; }
+
+    .contact-btns {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 50px;
+    }
+
+    .contact-btns button {
+      padding: 18px 30px;
+      border-radius: 12px;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: var(--transition);
+    }
+
+    .btn-wa { background: #fff; color: var(--secondary-tosca); }
+    .btn-email { background: var(--tosca-dark); color: #fff; }
+
+    .contact-btns button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      border-top: 1px solid rgba(255,255,255,0.2);
+      padding-top: 40px;
+    }
+
+    .social-links a {
+      font-size: 0.9rem;
+      font-weight: 500;
+      opacity: 0.8;
+    }
+
+    .social-links a:hover { opacity: 1; text-decoration: underline; }
+
+    /* FOOTER */
+    .footer {
+      padding: 30px;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      background: var(--bg-light);
+    }
+
+    /* LIGHTBOX */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: #ffffff;
+      z-index: 2000;
+      padding: 40px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox-content {
+      max-width: 100%;
+      max-height: 90vh;
+      border-radius: 10px;
+    }
+
+    .close-lightbox {
+      position: absolute;
+      top: 30px;
+      right: 40px;
+      color: #111111;
+      font-size: 40px;
+      cursor: pointer;
+    }
+
+    /* MOBILE VERSION */
+    @media (max-width: 768px) {
+      h2 { font-size: 2rem; }
+      
+      .nav-links { display: none; } /* Simplified for demo, you could add a hamburger */
+      
+      .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding-top: 40px;
+      }
+
+      .hero .text h2 { font-size: 3rem; }
+      .hero-img { text-align: center; order: -1; }
+      
+      .about-content { flex-direction: column; text-align: center; }
+      .about img { width: 100%; }
+
+      .cards { grid-template-columns: 1fr 1fr; }
+      
+      .contact-btns { flex-direction: column; }
+      .contact-btns button { width: 100%; }
+
+      .preview-btn { display: none; }
+    }
+  </style>
 </head>
 <body>
 
 <!-- NAVBAR -->
 <header>
   <div class="container nav">
-    <h1><a href="#hero"><span>Arif</span> Rochman</a></h1>
-    <nav>
-      <a href="#about">About Me</a>
+    <div class="logo"><a href="#hero"><span class="accent">Arif</span> Rochman</a></div>
+    <nav class="nav-links">
+      <a href="#about">About</a>
       <a href="#projects">Projects</a>
-      <a href="#contact" class="btn">Contact</a>
+      <a href="#contact" class="btn-contact">Get in Touch</a>
     </nav>
   </div>
 </header>
@@ -27,11 +473,11 @@
 <section id="hero" class="hero">
   <div class="container hero-content">
     <div class="text">
-      <h2>PORT<br><span>FOLIO.</span></h2>
-      <p>Creative | Graphic Designer</p>
+      <p>Creative Designer</p>
+      <h2>PORT<br><span class="accent">FOLIO.</span></h2>
     </div>
     <div class="hero-img">
-      <img src="profile.png" alt="profile">
+      <img src="profile.png" alt="profile" onerror="this.src='https://via.placeholder.com/500x500?text=Profile+Image'">
     </div>
   </div>
 </section>
@@ -39,16 +485,14 @@
 <!-- ABOUT SECTION -->
 <section id="about" class="about">
   <div class="container">
-    <h2>Hello, I am <span>Arif Rochman</span></h2>
+    <h2>Hello, I am <span class="accent">Arif Rochman</span></h2>
     <div class="about-content">
-      <img src="about.png" alt="about">
+      <img src="about.png" alt="about" onerror="this.src='https://via.placeholder.com/400x500?text=About+Image'">
       <div class="desc">
         <p>
-          <b>Experienced Creative Professional</b> with 5 years of expertise in social media and website design. Possesses strong communication skills and a proven track record of collaborating within teams to deliver functional, aesthetic, and goal-oriented solutions. Detail-oriented with excellent time management, committed to high-quality visual results that leverage the latest technology to create a competitive advantage.
+          <b>Graphic Designer</b> with over 5 years of experience in creating aesthetic and functional visual solutions. I possess deep expertise in industry-standard design software, ensuring precision and high-quality craftsmanship in every project. I am a communicative professional who excels in team collaboration to achieve collective goals. With a strong commitment to meticulous detail and efficient time management, I consistently deliver high-quality visual results that provide a strategic competitive advantage for the company.
         </p>
-        <a href="https://drive.google.com/file/d/1sprQZWPTEEOs-Phj4Q8WdILse9bvkF8n/view" 
-           target="_blank" 
-           class="cv-btn">
+        <a href="https://drive.google.com/file/d/1sprQZWPTEEOs-Phj4Q8WdILse9bvkF8n/view" target="_blank" class="cv-btn">
           Download CV
         </a>
       </div>
@@ -59,15 +503,28 @@
 <!-- PROJECT SECTION -->
 <section id="projects" class="projects">
   <div class="container">
-    <h2><span class="my-text">My</span> Creative Works</h2>
-    <p>This portfolio is a collection of works that represent my journey as a graphic designer.</p>
+    <div class="projects-header">
+      <h2><span class="accent">My</span> Creative Works</h2>
+      <p>This portfolio is a collection of my work that showcases my growth as a graphic designer, highlighting my commitment to creating designs that are not only visually appealing but also highly functional.</p>
+    </div>
+
     <div class="slider-container">
-      <div class="cards-wrapper">
-        <div class="cards" id="slider">
-          <div class="card">01<span>Website Design</span></div>
-          <div class="card">02<span>Social Media Design</span></div>
-          <div class="card">03<span>Logo Design</span></div>
-          <div class="card">04<span>Print Media Design</span></div>
+      <div class="cards" id="slider">
+        <div class="card" data-index="0">
+          <span class="num">01</span>
+          <span>Website Design</span>
+        </div>
+        <div class="card" data-index="1">
+          <span class="num">02</span>
+          <span>Social Media</span>
+        </div>
+        <div class="card" data-index="2">
+          <span class="num">03</span>
+          <span>Logo Design</span>
+        </div>
+        <div class="card" data-index="3">
+          <span class="num">04</span>
+          <span>Print Media</span>
         </div>
       </div>
     </div>
@@ -75,11 +532,11 @@
     <!-- PREVIEW IMAGE SECTION -->
     <div class="preview-section" id="previewSection">
       <div class="preview-container">
-        <button class="preview-btn prev">&#10094;</button>
+        <button class="preview-btn prev">❮</button>
         <div class="preview-wrapper">
           <div class="preview-slider" id="previewSlider"></div>
         </div>
-        <button class="preview-btn next">&#10095;</button>
+        <button class="preview-btn next">❯</button>
       </div>
       <div class="dots" id="dots"></div>
     </div>
@@ -89,14 +546,14 @@
 <!-- CONTACT SECTION -->
 <section id="contact" class="contact">
   <div class="container">
-    <h2><span>Thank you</span> for taking the time to explore my portfolio</h2>
-    <p>
-      I’m open to collaboration opportunities and ready to help bring your design ideas to life. Let’s work together to create impactful work.
-    </p>
+    <h2><span style="color: #111;">Thanks for visiting </span> my portfolio</h2>
+    <p>I am open to professional collaborations and would welcome the chance to discuss your requirements in detail, ensuring that my design expertise aligns with your needs and helps you achieve the best results.</p>
+    
     <div class="contact-btns">
-      <button onclick="wa()">Send a message on WhatsApp</button>
-      <button onclick="email()">Send a message through Email</button>
+      <button class="btn-wa" onclick="wa()">WhatsApp Me</button>
+      <button class="btn-email" onclick="email()">Send Email</button>
     </div>
+
     <div class="social-links">
       <a href="https://www.instagram.com/enrochmanarif/" target="_blank">Instagram</a>
       <a href="https://www.linkedin.com/in/arifrochman23/" target="_blank">LinkedIn</a>
@@ -107,9 +564,125 @@
 
 <!-- FOOTER -->
 <footer class="footer">
-  © 2026 Arif Rochman | Created with passion
+  &copy; 2026 Arif Rochman • Creative Portfolio • Built with Passion
 </footer>
 
-<script src="script.js"></script>
+<!-- LIGHTBOX -->
+<div id="lightbox" class="lightbox">
+  <span class="close-lightbox">&times;</span>
+  <img class="lightbox-content" id="lightbox-img" src="">
+</div>
+
+<script>
+  /* INITIAL SETUP */
+  const cards = document.querySelectorAll(".card");
+  const previewSection = document.getElementById("previewSection");
+  const previewSlider = document.getElementById("previewSlider");
+  const dotsContainer = document.getElementById("dots");
+  const nextPreview = document.querySelector(".preview-btn.next");
+  const prevPreview = document.querySelector(".preview-btn.prev");
+  const lb = document.getElementById("lightbox");
+  const lbImg = document.getElementById("lightbox-img");
+
+  let currentIndex = 0;
+  let currentImages = [];
+  const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+  const dataDesktop = {
+    0: ["img/web/web1.jpg", "img/web/web2.jpg", "img/web/web3.jpg", "img/web/web4.jpg", "img/web/web5.jpg", "img/web/web6.jpg"],
+    1: ["img/sosmed/sosmed1.jpg", "img/sosmed/sosmed2.jpg", "img/sosmed/sosmed3.jpg", "img/sosmed/sosmed4.jpg", "img/sosmed/sosmed5.jpg", "img/sosmed/sosmed6.jpg", "img/sosmed/sosmed7.jpg", "img/sosmed/sosmed8.jpg", "img/sosmed/sosmed9.jpg"],
+    2: ["img/logo/logo1.jpg", "img/logo/logo2.jpg", "img/logo/logo3.jpg", "img/logo/logo4.jpg"],
+    3: ["img/print/print1.jpg", "img/print/print2.jpg", "img/print/print3.jpg"]
+  };
+
+  const dataMobile = {
+    0: ["img/web-mobile/web1.jpg", "img/web-mobile/web2.jpg", "img/web-mobile/web3.jpg", "img/web-mobile/web4.jpg", "img/web-mobile/web5.jpg", "img/web-mobile/web6.jpg"],
+    1: ["img/sosmed-mobile/sosmed1.jpg", "img/sosmed-mobile/sosmed2.jpg", "img/sosmed-mobile/sosmed3.jpg", "img/sosmed-mobile/sosmed4.jpg", "img/sosmed-mobile/sosmed5.jpg", "img/sosmed-mobile/sosmed6.jpg", "img/sosmed-mobile/sosmed7.jpg", "img/sosmed-mobile/sosmed8.jpg", "img/sosmed-mobile/sosmed9.jpg"],
+    2: ["img/logo-mobile/logo1.jpg", "img/logo-mobile/logo2.jpg", "img/logo-mobile/logo3.jpg", "img/logo-mobile/logo4.jpg"],
+    3: ["img/print-mobile/print1.jpg", "img/print-mobile/print2.jpg", "img/print-mobile/print3.jpg"]
+  };
+
+  const data = isMobile ? dataMobile : dataDesktop;
+
+  /* CLICK CARD */
+  cards.forEach((card) => {
+    card.addEventListener("click", () => {
+      const idx = card.getAttribute("data-index");
+      
+      cards.forEach(c => c.classList.remove("active"));
+      card.classList.add("active");
+
+      currentImages = data[idx];
+      currentIndex = 0;
+
+      renderPreview();
+      previewSection.classList.add("active");
+      
+      // Auto scroll to preview on mobile
+      if(isMobile) {
+        previewSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+
+  function renderPreview() {
+    previewSlider.innerHTML = "";
+    dotsContainer.innerHTML = "";
+
+    currentImages.forEach((src, i) => {
+      const img = document.createElement("img");
+      img.src = src;
+      img.onerror = () => { img.src = `https://via.placeholder.com/800x450?text=Project+Image+${i+1}`; };
+      img.onclick = () => openLightbox(img.src);
+      previewSlider.appendChild(img);
+
+      const dot = document.createElement("span");
+      if (i === 0) dot.classList.add("active");
+      dot.onclick = () => { currentIndex = i; updatePreview(); };
+      dotsContainer.appendChild(dot);
+    });
+
+    updatePreview();
+  }
+
+  function updatePreview() {
+    previewSlider.style.transform = `translateX(-${currentIndex * 100}%)`;
+    document.querySelectorAll(".dots span").forEach((d, i) => {
+      d.classList.toggle("active", i === currentIndex);
+    });
+  }
+
+  nextPreview.onclick = () => { if (currentIndex < currentImages.length - 1) { currentIndex++; updatePreview(); } };
+  prevPreview.onclick = () => { if (currentIndex > 0) { currentIndex--; updatePreview(); } };
+
+  function openLightbox(source) {
+    lb.classList.add("active");
+    lbImg.src = source;
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeLightbox() {
+    lb.classList.remove("active");
+    document.body.style.overflow = "auto";
+  }
+
+  document.querySelector(".close-lightbox").onclick = closeLightbox;
+  lb.onclick = (e) => { if (e.target !== lbImg) closeLightbox(); };
+
+  function wa() { window.open("https://wa.me/6287724026611"); }
+  function email() { window.location.href = "mailto:in.arifrochman@gmail.com"; }
+
+  // Swipe for mobile
+  let startX = 0;
+  previewSlider.addEventListener("touchstart", (e) => startX = e.touches[0].clientX);
+  previewSlider.addEventListener("touchend", (e) => {
+    const endX = e.changedTouches[0].clientX;
+    if (startX - endX > 50 && currentIndex < currentImages.length - 1) {
+      currentIndex++; updatePreview();
+    } else if (endX - startX > 50 && currentIndex > 0) {
+      currentIndex--; updatePreview();
+    }
+  });
+</script>
 </body>
 </html>
