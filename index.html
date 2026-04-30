@@ -619,15 +619,13 @@
       previewSection.classList.add("active");
       
       // Auto scroll to preview on mobile
-      if(isMobile) {
-        const navbarHeight = 120;
-        const elementPosition = previewSection.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
-
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        });
+      if (isMobile) {
+        setTimeout(() => {
+          previewSection.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center'
+          });
+        }, 100);
       }
     });
   });
