@@ -620,7 +620,14 @@
       
       // Auto scroll to preview on mobile
       if(isMobile) {
-        previewSection.scrollIntoView({ behavior: 'smooth' });
+        const navbarHeight = 120;
+        const elementPosition = previewSection.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
       }
     });
   });
