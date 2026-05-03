@@ -304,7 +304,28 @@
     }
     .dots span.active { background: var(--primary-tosca); width: 24px; border-radius: 10px; }
 
-    /* CONTACT SECTION - Gradient Card */
+    /* CONTACT SECTION*/
+    .contact-btns a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 35px;
+      border-radius: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: var(--transition);
+      min-width: 180px;
+    }
+
+    .btn-wa { background: white; color: var(--primary-tosca) !important; }
+    .btn-email { background: rgba(0,0,0,0.2); color: white !important; border: 1px solid rgba(255,255,255,0.3) !important; }
+
+    .contact-btns a:hover { 
+      transform: scale(1.05); 
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1); 
+    }
+
     .contact-wrapper {
       background: var(--primary-gradient);
       border-radius: 40px;
@@ -449,19 +470,19 @@
     <div class="cards" id="slider">
       <div class="card" data-index="0">
         <span class="num">01</span>
-        <span>Web Design</span>
+        <span>Web Interface</span>
       </div>
       <div class="card" data-index="1">
         <span class="num">02</span>
-        <span>Digital Design</span>
+        <span>Digital Activation</span>
       </div>
       <div class="card" data-index="2">
         <span class="num">03</span>
-        <span>Logo Design</span>
+        <span>Logo Identity</span>
       </div>
       <div class="card" data-index="3">
         <span class="num">04</span>
-        <span>Print Design</span>
+        <span>Editorial/Print</span>
       </div>
     </div>
 
@@ -487,8 +508,8 @@
       <p>I am open to professional collaborations and would welcome the chance to discuss your requirements in detail, ensuring that my design expertise aligns with your needs and helps you achieve the best results.</p>
       
       <div class="contact-btns">
-        <button class="btn-wa" onclick="wa()">WhatsApp</button>
-        <button class="btn-email" onclick="email()">Email</button>
+        <a href="https://wa.me/6287724026611" target="_blank" class="btn-wa">WhatsApp</a>
+        <a href="mailto:in.arifrochman@gmail.com" target="_blank" class="btn-email">Email</a>
       </div>
 
       <div class="social-links">
@@ -607,9 +628,6 @@
 
   document.querySelector(".close-lightbox").onclick = closeLightbox;
   lb.onclick = (e) => { if (e.target !== lbImg) closeLightbox(); };
-
-  function wa() { window.open("https://wa.me/6287724026611"); }
-  function email() { window.location.href = "mailto:in.arifrochman@gmail.com"; }
 
   /* Swipe for mobile */
   let startX = 0;
