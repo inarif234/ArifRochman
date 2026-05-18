@@ -99,11 +99,11 @@
       max-width: 1100px;
       z-index: 1000;
       background: var(--glass-bg);
-      backdrop-filter: blur(15px);
-      -webkit-backdrop-filter: blur(15px);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
       border: 1px solid var(--glass-border);
       border-radius: 20px;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
     }
 
     .nav {
@@ -123,8 +123,8 @@
     .btn-contact {
       background: var(--primary-gradient);
       color: white !important;
-      padding: 10px 24px;
-      border-radius: 12px;
+      padding: 10px 20px;
+      border-radius: 10px;
       box-shadow: 0 4px 15px rgba(32, 178, 170, 0.3);
     }
 
@@ -141,19 +141,21 @@
       grid-template-columns: 1.2fr 0.8fr;
       align-items: center;
       gap: 40px;
+      padding: 0 50px;
     }
 
     .hero .text p {
+      display: none;
       font-size: 1rem;
       color: var(--primary-tosca);
-      font-weight: 700;
+      font-weight: 600;
       letter-spacing: 4px;
       text-transform: uppercase;
       margin-bottom: 10px;
     }
 
     .hero .text h2 {
-      font-size: 5rem;
+      font-size: 8rem;
       line-height: 1;
       margin-bottom: 20px;
     }
@@ -192,21 +194,24 @@
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       border: 1px solid var(--glass-border);
-      border-radius: 30px;
+      border-radius: 20px;
       padding: 50px;
       margin-top: 40px;
     }
 
     .about-content {
       display: flex;
-      align-items: center;
+      align-items: stretch;
       gap: 60px;
     }
 
     .about img {
       width: 300px;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      flex-shrink: 0;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 4px 8px 16px rgba(0,0,0,0.05);
     }
 
     .cv-btn {
@@ -214,15 +219,15 @@
       padding: 16px 40px;
       background: var(--text-main);
       color: white;
-      border-radius: 12px;
+      border-radius: 10px;
       font-weight: 600;
       margin-top: 20px;
     }
 
     .cv-btn:hover {
       background: var(--primary-tosca);
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(32, 178, 170, 0.2);
+      transform: translateY(-2px);
+      box-shadow: 4px 8px 16px rgba(0,0,0,0.05);
     }
 
     /* PROJECTS SECTION */
@@ -234,6 +239,10 @@
     .projects p { 
       max-width: 900px; 
       margin: 0 auto 40px; 
+    }
+
+    .cards::-webkit-scrollbar {
+      display: none;
     }
 
     .cards {
@@ -249,10 +258,6 @@
       user-select: none;
     }
 
-    .cards::-webkit-scrollbar {
-      display: none;
-    }
-
     .card {
       flex: 0 0 calc(25% - 15px); 
       min-width: 220px;
@@ -260,7 +265,7 @@
       backdrop-filter: blur(10px);
       border: 1px solid var(--glass-border);
       padding: 30px 20px;
-      border-radius: 20px;
+      border-radius: 10px;
       text-align: center;
       cursor: pointer;
       transition: var(--transition);
@@ -271,24 +276,29 @@
       display: block;
       font-size: 2rem;
       font-weight: 800;
-      color: rgba(32, 178, 170, 0.2);
+      color: rgba(from var(--primary-tosca) r g b / 0.4);
       margin-bottom: 10px;
     }
 
     .card span { 
+      display: block;
       font-weight: 600; 
-      color: var(--text-main); 
+      color: rgba(from var(--text-main) r g b / 0.6);
     }
 
     .card:hover, .card.active {
       background: white;
       border-color: var(--primary-tosca);
       transform: translateY(-2px);
-      box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+      box-shadow: 4px 8px 16px rgba(0,0,0,0.05);
     }
 
     .card.active .num, .card:hover .num { 
       color: var(--primary-tosca); 
+    }
+
+    .card.active span, .card:hover span { 
+      color: var(--text-main); 
     }
 
     .preview-section {
@@ -306,17 +316,27 @@
     .preview-container {
       display: flex;
       align-items: center;
-      gap: 15px;
+      gap: 20px;
       background: var(--glass-bg);
-      padding: 20px;
-      border-radius: 25px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 50px;
+    }
+
+    .preview-wrapper-outer {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      overflow: hidden;
     }
 
     .preview-wrapper { 
-      flex: 1; 
+      width: 100%; 
       overflow: hidden; 
-      border-radius: 15px; 
+      border-radius: 10px; 
     }
 
     .preview-slider { 
@@ -331,19 +351,21 @@
     }
 
     .preview-btn {
-      width: 45px; height: 45px; border: none;
-      background: white; color: var(--primary-tosca);
-      border-radius: 50%; cursor: pointer;
+      width: 40px; height: 40px; border: none;
+      background: var(--primary-tosca); color: white;
+      border-radius: 100%; cursor: pointer;
       display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      box-shadow: 2 4px 8px rgba(0,0,0,0.05);
       font-weight: bold;
     }
 
     .dots { 
       display: flex; 
       justify-content: center; 
+      align-items: center;
       gap: 8px; 
-      margin-top: 30px; 
+      margin-top: 0;
+      width: 100%;
     }
 
     .dots span {
@@ -362,22 +384,34 @@
     }
 
     /* CONTACT SECTION*/
+    .contact-wrapper {
+      background: var(--primary-gradient);
+      border-radius: 20px;
+      padding: 50px;
+      color: white;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(32, 178, 170, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
     .contact-btns a {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       padding: 16px 35px;
-      border-radius: 15px;
-      font-weight: 700;
+      border-radius: 10px;
+      font-weight: 600;
       cursor: pointer;
-      font-size: 0.95rem;
+      font-size: 1rem;
       transition: var(--transition);
       min-width: 180px;
     }
 
     .btn-wa { 
-      background: white; 
-      color: var(--primary-tosca) !important; 
+      background: rgba(0,0,0,0.2); 
+      color: white !important; 
+      border: 1px solid rgba(255,255,255,0.3) !important; 
     }
 
     .btn-email { 
@@ -386,38 +420,34 @@
       border: 1px solid rgba(255,255,255,0.3) !important; 
     }
 
-    .contact-btns a:hover { 
-      transform: scale(1.05); 
-      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-      filter: brightness(1.1);
-    }
-
-    .contact-wrapper {
-      background: var(--primary-gradient);
-      border-radius: 40px;
-      padding: 80px 40px;
-      color: white;
-      text-align: center;
-      box-shadow: 0 20px 40px rgba(32, 178, 170, 0.2);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .contact h2 { 
-      color: white; 
-    }
-
-    .contact p { 
-      opacity: 0.9; 
-      max-width: 900px; 
-      margin: 0 auto 40px; 
-    }
-
     .contact-btns { 
       display: flex; 
       justify-content: center; 
       gap: 20px; 
       margin-bottom: 50px; 
+    }
+    
+    .contact-btns a:hover { 
+      transform: scale(1.025); 
+      box-shadow: 0 10px 20px rgba(0,0,0,0.10);
+      background: var(--text-main);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.2) !important;
+      filter: brightness(1.1);
+    }
+
+    .contact h2 { 
+      color: var(--bg-gradient);
+    }
+
+    .contact h2 span {
+      color: var(--text-main);
+    }
+    
+    .contact p { 
+      color: var(--bg-gradient);
+      max-width: 900px; 
+      margin: 0 auto 40px; 
     }
 
     .social-links {
@@ -429,25 +459,28 @@
     }
 
     .social-links a { 
-      font-size: 0.85rem; 
-      font-weight: 600; 
-      opacity: 0.8; 
-      text-transform: uppercase; 
+      color: var(--bg-gradient);
+      font-size: 0.75rem; 
+      opacity: 0.5; 
       letter-spacing: 1px; 
+      text-transform: uppercase;
+      transition: var(--transition);
+      border-bottom: 1px solid transparent;
+      padding-bottom: 4px;
     }
 
     .social-links a:hover { 
       opacity: 1; 
-      transform: translateY(-3px); 
+      transform: translateY(-1px); 
+      border-bottom-color: white;
     }
 
     /* FOOTER SECTION */
     .footer { 
       padding: 40px; 
       text-align: center; 
-      font-size: 0.8rem; 
-      color: var(--text-muted); 
-      font-weight: 500; 
+      font-size: 0.75rem; 
+      color: rgba(from var(--text-main) r g b / 0.5);
     }
 
     /* LIGHTBOX */
@@ -530,26 +563,33 @@
 
     /* MOBILE ADAPTATIONS */
     @media (max-width: 768px) {
-      .hero-content { grid-template-columns: 1fr; text-align: center; }
-      .hero .text h2 { font-size: 3.2rem; }
-      .hero-img { order: -1; margin-bottom: 40px; }
+      /* HERO SECTION */
+      .hero-content { grid-template-columns: 1fr; padding: 0 20px; }
+      .hero .text { max-width: 320px; margin: 0 auto; text-align: left; }
+      .hero .text h2 { font-size: 4.2rem; line-height: 0.95; }
+      .hero-img { order: -1; margin-bottom: 40px; display: flex; justify-content: center; max-width: 280px; margin-left: auto; margin-right: auto; }
+      .hero-img img { max-width: 100%; }
       
+      /* ABOUT SECTION */
       .about-card { padding: 30px 20px; }
+      .about-card h2 { text-align: center; font-size: 2rem; }
       .about-content { flex-direction: column; text-align: center; }
-      .about img { width: 100%; max-width: 280px; }
+      .about img { width: 100%; max-width: 280px; margin: 0 auto; }
 
+      /* PROJECTS & CONTACT */
+      .projects h2, .contact h2 { text-align: center; font-size: 2rem; }
       .cards { grid-template-columns: 1fr 1fr; }
       .contact-btns { flex-direction: column; padding: 0 20px; }
       .contact-btns button, .contact-btns a { width: 100%; }
       
+      /* NAVIGATION & ELEMENTS */
       header { top: 10px; }
       .nav-links { display: none; } 
       .shape-circle { width: 150px; height: 150px; }
 
+      /* LIGHTBOX */
       .lightbox-content { max-width: 95%; max-height: 85vh; }
-
       .close-lightbox { top: 15px; right: 25px; font-size: 40px; }
-
       .lb-nav { display: none; }
     }
   </style>
@@ -590,7 +630,7 @@
 <section id="hero" class="hero">
   <div class="container hero-content">
     <div class="text">
-      <p>Creative Designer</p>
+      <p>Graphic Designer</p>
       <h2>PORT<br><span class="accent">FOLIO.</span></h2>
     </div>
     <div class="hero-img">
@@ -605,7 +645,9 @@
     <div class="about-card">
       <h2>Hello, I am <span class="accent">Arif Rochman</span></h2>
       <div class="about-content">
-        <img src="about.png" alt="about" onerror="this.src='https://via.placeholder.com/400x500?text=About+Image'">
+        <div class="about-img">
+          <img src="about.png" alt="about" onerror="this.src='https://via.placeholder.com/400x500?text=About+Image'">
+        </div>
         <div class="desc">
           <p>
             <b>Graphic Designer</b> with 5 years of experience in the creative industry, specializing in social media and website design (Brand Communication). Possesses strong communication skills and is experienced in collaborating within teams to deliver functional, aesthetic, and goal-oriented design solutions. Detail-oriented with excellent time management skills, and committed to producing high-quality visual designs aligned with the latest technology trends to create a competitive advantage for the company.
@@ -650,16 +692,20 @@
       </div>
     </div>
 
+    <!-- PREVIEW SECTION -->
     <div class="preview-section" id="previewSection">
       <div class="preview-container">
         <button class="preview-btn prev" aria-label="Previous image">❮</button>
-        <div class="preview-wrapper">
-          <div class="preview-slider" id="previewSlider"></div>
+        <div class="preview-wrapper-outer" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+          <div class="preview-wrapper">
+            <div class="preview-slider" id="previewSlider"></div>
+          </div>
+          <div class="dots" id="dots"></div>
         </div>
         <button class="preview-btn next" aria-label="Next image">❯</button>
       </div>
-      <div class="dots" id="dots"></div>
     </div>
+
   </div>
 </section>
 
@@ -667,7 +713,7 @@
 <section id="contact" class="contact">
   <div class="container">
     <div class="contact-wrapper">
-      <h2><span style="color: #2c3e50;">Thanks for visiting </span> my portfolio</h2>
+      <h2><span>Thanks for visiting </span> my portfolio</h2>
       <p>I am open to professional collaborations and would welcome the chance to discuss your requirements in detail, ensuring that my design expertise aligns with your needs and helps you achieve the best results.</p>
       
       <div class="contact-btns">
@@ -686,7 +732,7 @@
 
 <!-- FOOTER -->
 <footer class="footer">
-  &copy; 2026 PORTFOLIO by Arif Rochman
+  &copy; 2026 | Portfolio by Arif Rochman
 </footer>
 
 <!-- LIGHTBOX -->
