@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://arif-rochman.vercel.app/sitemap.xml
