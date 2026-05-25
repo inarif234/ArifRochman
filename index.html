@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="google-site-verification" content="4vBI7JONwKotHuZhwpeydB97nY7SDAku1LqIorZcLCY" />
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Arif Rochman | Creative Graphic Designer Portfolio</title>
@@ -223,6 +222,10 @@
     }
 
     /* ABOUT SECTION */
+    .about-card h2 {
+      text-align: center;
+    }
+    
     .about-card {
       background: var(--glass-bg);
       backdrop-filter: blur(10px);
@@ -262,6 +265,33 @@
       background: var(--primary-tosca);
       transform: translateY(-2px);
       box-shadow: 4px 8px 16px rgba(0,0,0,0.05);
+    }
+
+    /* SKILLS SECTION */
+    .skills .about-card p {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 30px auto;
+    }
+    .skill-item {
+      background: rgba(255, 255, 255, 0.5);
+      padding: 15px;
+      border-radius: 10px;
+      border: 1px solid var(--glass-border);
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .skill-item:hover {
+      background: var(--primary-tosca);
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 15px;
     }
 
     /* PROJECTS SECTION */
@@ -336,7 +366,7 @@
     }
 
     .preview-section {
-      display: none;
+      display: block;
       animation: slideUp 0.6s ease-out forwards;
     }
 
@@ -381,7 +411,7 @@
     .preview-slider img { 
       width: 100%; 
       flex-shrink: 0; 
-      cursor: zoom-in; 
+      cursor: pointer; 
     }
 
     .preview-btn {
@@ -610,6 +640,9 @@
       .about-content { flex-direction: column; text-align: center; }
       .about img { width: 100%; max-width: 280px; margin: 0 auto; }
 
+      /* SKILLS SECTION */
+      .skills-grid { grid-template-columns: repeat(2, 1fr); }
+
       /* PROJECTS & CONTACT */
       .projects h2, .contact h2 { text-align: center; font-size: 2rem; }
       .cards { grid-template-columns: 1fr 1fr; }
@@ -654,6 +687,7 @@
     <div class="logo"><a href="#hero"><span class="accent">ARIF</span> ROCHMAN</a></div>
     <nav class="nav-links">
       <a href="#about">About</a>
+      <a href="#skills">Skills</a>
       <a href="#projects">Projects</a>
       <a href="#contact" class="btn-contact">Let's Talk</a>
     </nav>
@@ -677,7 +711,7 @@
 <section id="about" class="about">
   <div class="container">
     <div class="about-card">
-      <h2>Hello, I am <span class="accent">Arif Rochman</span></h2>
+      <h2>Hello, I'm <span class="accent">Arif Rochman</span></h2>
       <div class="about-content">
         <div class="about-img">
           <img src="about.png" alt="about" onerror="this.src='https://via.placeholder.com/400x500?text=About+Image'">
@@ -695,12 +729,34 @@
   </div>
 </section>
 
+<!-- SKILLS SECTION -->
+ <section id="skills" class="skills">
+  <div class="container">
+    <div class="about-card"> <h2>Software <span class="accent">Skills</span></h2>
+      <p style="margin-bottom: 30px;">Experienced in using professional design tools to create high-quality and visually engaging visuals for various creative needs.</p>
+      
+      <div class="skills-grid">
+        <div class="skill-item">• Photoshop </div>
+        <div class="skill-item">• Illustrator</div>
+        <div class="skill-item">• PremierePro</div>
+        <div class="skill-item">• After Effects</div>
+        <div class="skill-item">• Figma</div>
+        <div class="skill-item">• CapCut</div>
+        <div class="skill-item">• Google Docs</div>
+        <div class="skill-item">• Google Slides</div>
+        <div class="skill-item">• HTML, CSS, JS</div>
+        <div class="skill-item">• MySQL Database</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- PROJECT SECTION -->
 <section id="projects" class="projects">
   <div class="container">
     <div class="projects-header">
-      <h2><span class="accent">My</span> Creative Works</h2>
-      <p>This portfolio is a collection of my work that showcases my growth as a graphic designer, highlighting my commitment to creating designs that are not only visually appealing but also highly functional.</p>
+      <h2><span class="accent">My Creative</span> Works</h2>
+      <p>A collection of creative design projects that showcases my journey as a graphic designer by emphasizing the balance between visual aesthetics and effective design objectives.</p>
     </div>
 
     <div class="cards" id="slider">
@@ -796,7 +852,7 @@
     1: ["img/web/web1.jpg", "img/web/web2.jpg", "img/web/web3.jpg", "img/web/web4.jpg", "img/web/web5.jpg", "img/web/web6.jpg", "img/web/web7.jpg"],
     2: ["img/sosmed/sosmed1.jpg", "img/sosmed/sosmed2.jpg", "img/sosmed/sosmed3.jpg", "img/sosmed/sosmed4.jpg", "img/sosmed/sosmed5.jpg", "img/sosmed/sosmed6.jpg", "img/sosmed/sosmed7.jpg", "img/sosmed/sosmed8.jpg", "img/sosmed/sosmed9.jpg", "img/sosmed/sosmed10.jpg"],
     3: ["img/video/video1.jpg", "img/video/video2.jpg", "img/video/video3.jpg", "img/video/video4.jpg", "img/video/video5.jpg"],
-    4: ["img/print/print1.jpg", "img/print/print2.jpg", "img/print/print3.jpg"],
+    4: ["img/print/print1.jpg", "img/print/print2.jpg", "img/print/print3.jpg", "img/print/print4.jpg"],
     5: ["img/logo/logo1.jpg", "img/logo/logo2.jpg", "img/logo/logo3.jpg", "img/logo/logo4.jpg"],
   };
 
@@ -804,7 +860,7 @@
     1: ["img/web-mobile/web1.jpg", "img/web-mobile/web2.jpg", "img/web-mobile/web3.jpg", "img/web-mobile/web4.jpg", "img/web-mobile/web5.jpg", "img/web-mobile/web6.jpg", "img/web-mobile/web7.jpg"],
     2: ["img/sosmed-mobile/sosmed1.jpg", "img/sosmed-mobile/sosmed2.jpg", "img/sosmed-mobile/sosmed3.jpg", "img/sosmed-mobile/sosmed4.jpg", "img/sosmed-mobile/sosmed5.jpg", "img/sosmed-mobile/sosmed6.jpg", "img/sosmed-mobile/sosmed7.jpg", "img/sosmed-mobile/sosmed8.jpg", "img/sosmed-mobile/sosmed9.jpg", "img/sosmed-mobile/sosmed10.jpg"],
     3: ["img/video-mobile/video1.jpg", "img/video-mobile/video2.jpg", "img/video-mobile/video3.jpg", "img/video-mobile/video4.jpg", "img/video-mobile/video5.jpg"],
-    4: ["img/print-mobile/print1.jpg", "img/print-mobile/print2.jpg", "img/print-mobile/print3.jpg"],
+    4: ["img/print-mobile/print1.jpg", "img/print-mobile/print2.jpg", "img/print-mobile/print3.jpg", "img/print-mobile/print4.jpg"],
     5: ["img/logo-mobile/logo1.jpg", "img/logo-mobile/logo2.jpg", "img/logo-mobile/logo3.jpg", "img/logo-mobile/logo4.jpg"],
   };
 
@@ -832,6 +888,7 @@
     });
   });
 
+  /* CLICK PREVIEW */
   function renderPreview() {
     previewSlider.innerHTML = "";
     dotsContainer.innerHTML = "";
@@ -863,6 +920,17 @@
 
   nextPreview.onclick = () => { if (currentIndex < currentImages.length - 1) { currentIndex++; updatePreview(); } };
   prevPreview.onclick = () => { if (currentIndex > 0) { currentIndex--; updatePreview(); } };
+
+  /* CLICK PREVIEW */
+  window.addEventListener('load', () => {
+    const firstCard = document.querySelector('.card[data-index="1"]');
+    if (firstCard) {
+      firstCard.classList.add("active");
+      currentImages = data["1"];
+      currentIndex = 0;
+      renderPreview();
+    }
+  });
 
   /* LOGIKA LIGHTBOX BARU */
   const lbPrev = document.querySelector(".lb-prev");
