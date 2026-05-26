@@ -597,28 +597,30 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background: none;
-      color: var(--text-main);
+      background: var(--primary-tosca);
+      color: white;
       border: none;
-      width: 60px;
-      height: 100px;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
       cursor: pointer;
-      font-size: 30px;
+      font-size: 18px;
       display: flex;
       align-items: center;
       justify-content: center;
       transition: var(--transition);
       z-index: 2010;
-      opacity: 0.4;
+      opacity: 0.8;
     }
 
     .lb-nav:hover {
       opacity: 1;
-      color: var(--primary-tosca);
+      transform: translateY(-50%) scale(1.1);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     }
 
-    .lb-prev { left: 20px; }
-    .lb-next { right: 20px; }
+    .lb-prev { left: 40px; }
+    .lb-next { right: 40px; }
 
     @keyframes fadeIn {
       from { opacity: 0; }
@@ -829,7 +831,13 @@
 <div id="lightbox" class="lightbox">
   <span class="close-lightbox">&times;</span>
   <button class="lb-nav lb-prev">❮</button>
-  <img class="lightbox-content" id="lightbox-img" src="">
+
+  <div style="text-align: center; max-width: 90%; display: flex; flex-direction: column; align-items: center; gap: 15px;">
+    <img class="lightbox-content" id="lightbox-img" src="" style="max-width: 100%; max-height: 75vh;">
+    <div id="lb-dots" class="dots" style="margin-top: 10px;"></div>
+    <a id="lightbox-link" href="#" target="_blank" style="color: #20b2aa; font-weight: 600; text-decoration: underline; font-size: 1rem; z-index: 2015; background: rgba(255,255,255,0.9); padding: 8px 16px; border-radius: 8px; display: none;">Video Link</a>
+  </div>
+  
   <button class="lb-nav lb-next">❯</button>
 </div>
 
@@ -843,6 +851,7 @@
   const prevPreview = document.querySelector(".preview-btn.prev");
   const lb = document.getElementById("lightbox");
   const lbImg = document.getElementById("lightbox-img");
+  const lbDotsContainer = document.getElementById("lb-dots");
 
   let currentIndex = 0;
   let currentImages = [];
@@ -932,7 +941,7 @@
     }
   });
 
-  /* LOGIKA LIGHTBOX BARU */
+  /* LOGIKA LIGHTBOX */
   const lbPrev = document.querySelector(".lb-prev");
   const lbNext = document.querySelector(".lb-next");
   let lbIndex = 0; 
@@ -940,12 +949,48 @@
   function openLightbox(index) {
     lbIndex = index;
     lb.classList.add("active");
+    renderLightboxDots();
     updateLightboxImage();
     document.body.style.overflow = "hidden";
   }
 
+  const lbLink = document.getElementById("lightbox-link");
+
   function updateLightboxImage() {
     lbImg.src = currentImages[lbIndex];
+    updateLightboxDots();
+    const activeCard = document.querySelector(".card.active");
+    const activeIndex = activeCard ? activeCard.getAttribute("data-index") : "";
+
+    if (activeIndex === "3" && videoLinks[lbIndex]) {
+      lbLink.href = videoLinks[lbIndex];
+      lbLink.innerText = `Open Link ${lbIndex + 1} ↗`;
+      lbLink.style.display = "inline-block";
+    } else {
+      lbLink.style.display = "none";
+    }
+  }
+
+  function renderLightboxDots() {
+    lbDotsContainer.innerHTML = "";
+    currentImages.forEach((_, i) => {
+      const dot = document.createElement("span");
+      if (i === lbIndex) dot.classList.add("active");
+
+      dot.onclick = (e) => { 
+        e.stopPropagation(); 
+        lbIndex = i; 
+        updateLightboxImage(); 
+      };
+      lbDotsContainer.appendChild(dot);
+    });
+  }
+
+  function updateLightboxDots() {
+    const allLbDots = document.querySelectorAll("#lb-dots span");
+    allLbDots.forEach((d, i) => {
+      d.classList.toggle("active", i === lbIndex);
+    });
   }
 
   function nextImage() {
@@ -1001,6 +1046,15 @@
       currentIndex--; updatePreview();
     }
   });
+
+  // Link (Motion & Videos)
+  const videoLinks = {
+    0: "https://www.youtube.com/watch?v=O8vEWY7_Tls&t=4s",
+    1: "https://www.youtube.com/watch?v=1OFN3khtjp4",
+    2: "https://www.youtube.com/watch?v=lgNEW7z_6Ok&t=10s",
+    3: "https://www.youtube.com/watch?v=r3n36XqR2tE",
+    4: "https://drive.google.com/drive/u/6/folders/1denNKQqnrRrOfe5UsYh1kT8TA4xo5KmB",
+  };
 </script>
 </body>
 </html>
